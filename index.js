@@ -1,214 +1,111 @@
-// function slider(slideCount) {
-//   let photoNumbers = slideCount;
+// 1) HTML collection
+// 2) Node list
+// 3) collection
 
-//   function animation(time) {
-//     console.log(`animate sliders ${photoNumbers} with time ${time}` );
+// const p = document.querySelectorAll("p");
+// console.log("p", p);
+// console.log("arr", [1, 2, 3, 4, 5]);
+
+// const list = document.querySelector(".list");
+
+// const createLi = (count) => {
+//   for (let i = 0; i < count; i += 1) {
+//     const li = document.createElement("li");
+//     li.textContent = `${i}`;
+//     list.append(li);
 //   }
-
-//   return animation;
-// }
-
-// const slider1 = slider(10); // local scope {photoNumbers: 10, animation => знає про число 10}
-// console.log(slider1(200));
-
-// const slider2 = slider(20); // local scope {photoNumbers: 20, animation => знає про число 20}
-// console.log(slider2(400));
-
-// const slider3 = slider(30);// local scope {photoNumbers: 30, animation => знає про число 30}
-// console.log(slider3(1000));
-
-// const user = {
-//   name: "John",
-//   age: 30,
-//   status: "Premium",
 // };
 
-// // console.log(user.name);
-// // console.log(user.age);
-// // console.log(user.status);
-
-// const userChoice = prompt("Enter object key"); // userChoice = "age"
-// console.log(user[userChoice]); // user['age']
-
-// // console.log(user["name"]);
-// // console.log(user["age"]);
-// // console.log(user["status"]);
-
-// const book = {
-//   title: "The Great Gatsby",
-//   author: "F. Scott Fitzgerald",
-//   publisher: "Scribner",
-//   year: 1925,
-//   pages: 180,
-//   price: 20,
-// };
-
-// const propKey = "title";
-// const bookAuthor = book[propKey];
-// console.log(bookAuthor); // 'F. Scott Fitzgerald'
-
-//
-
-// const user = {
-//   name: "John",
-//   age: 30,
-//   status: "Premium",
-// };
-
-// for (const key of user) {
-//   console.log(key);
-// }
-
-// 1) Лічильник - змінна яка контролює скільки разів відпрацював цикл - i = 0
-
-// 2) Умова при якій цикл зупинеться - цикл зупинеться якщо лічильиник буде більше за довжину масиву
-
-// 3) Код який змінює значення лічильника - i++
-
-// const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-// for (let i = 0; i < numbers.length; i += 1) {
-//   //   if (i % 2 !== 0) {
-//   //     continue;
-//   //   }
-//   if (numbers[i] === 3) {
-//     break;
+// createLi(10);
+// const children = document.querySelectorAll("li");
+// children.forEach((el, i) => {
+//   if (i === 1) {
+//     el.remove();
 //   }
-//   console.log(numbers[i]);
-// }
+// });
+// console.log(children);
+// const filteredLi = [...list.children].filter(
+//   (li, index) => index !== 1 || index !== 4 || index !== 7
+// );
 
-// let i = 0;
-// while (i < numbers.length) {
-//   console.log(numbers[i]);
-//   i = +1;
-// }
+// list.innerHTML = "";
+// list.append(...filteredLi);
 
-// let i = 0;
-// do {
-//   console.log(numbers[i]);
-//   i = +1;
-// } while (i < numbers.length);
+// const button = document.querySelector("button");
+// console.log(button.closest("p"));
 
-// const numbers = [1, 2, 3, 4, "six"];
+// const overlay = document.querySelector(".overlay");
+// const modal = document.querySelector(".modal");
+// const title = document.createElement("h1");
+// title.textContent = "Hello World";
+// const titleCopy = title.cloneNode(true);
+// overlay.append(title);
+// modal.append(titleCopy);
+const body = document.querySelector("body");
 
-// numbers.push(5);
+// create elements
+const main = document.createElement("main");
+const title = document.createElement("h1");
+const figure = document.createElement("figure");
+const img = document.createElement("img");
+const figcaption = document.createElement("figcaption");
 
-// console.log(numbers);
+// add atr
+main.id = "main";
+title.id = "title";
+figure.id = "img-div";
+img.id = "image";
+img.src = "https://picsum.photos/id/237/200/300";
+img.alt = "random image";
+figcaption.id = "img-caption";
 
-// () при арефметичних операціях => запуск функції => частина конструкцій в JS (цикли, if, switch, створення функцій)
-// [] - масиви => доступ до ключа обєкта якщо ключ динамічний, доступ до елементу масиву по індексу, деструктуризація
-// {} - обєкт => частина конструкцій в JS (цикли, if, switch, створення функцій), тіло функції, деструктуризація, клас
+// add textContent
+title.textContent = "- Michel Legrand -";
+figcaption.textContent = "Michel Legrand conducting his orcherstra.";
 
-// function bar() {
-//   console.log("bar");
-// }
+// paste to DOM
+body.prepend(main);
+main.append(title);
+main.append(figure);
+figure.append(img);
+figure.append(figcaption);
 
-// function baz() {
-//   console.log("baz");
-// }
+const article = `<article id="tribute-info">
+        <div id="intro"><p>&bull; Michel Legrand (1932 - 2019) was a famous French musician. &bull;</p></div>
+        <p><u>Here are some major facts about him:</u></p>
+        <p>
+          <ul class='fact-list'>
+          </ul>
+      </p>
+        <blockquote id="quote">
+          <p>Writing is a mental thing, while playing is essentially a physical feeling.</p>
+          <cite>-- Michel Legrand</cite>
+        </blockquote>
+        <hr>
+        <p>To find out more about him, feel free to have a look at his biography on <a id="tribute-link" href="https://en.wikipedia.org/wiki/Michel_Legrand" target="_blank">Wikipedia</a>.</p>
+      </article>`;
 
-// function foo() {
-//   console.log("foo");
-//   bar();
-//   baz();
-// }
+main.insertAdjacentHTML("beforeend", article);
 
-// foo();
+const ul = document.querySelector("ul");
 
-// function pow(number, power) {
-//   if (power === 0) {
-//     return 1;
-//   }
+const facts = [
+  "He was born in Paris, France on February 24<sup>th</sup>, 1932.",
+  "His father was himself a conductor and composer, and his mother, who was Armenian, was the sister of a conductor.",
+  "His sister was a Soprano and a member of the Swingle Singers.",
+  "Along his career, he composed more than two hundred film and television scores.",
+  "He was also a Jazz player and worked with giants like Miles Davis or Stan Getz.",
+  "He won a huge amount of awards, including Oscars, Grammy Awards and Golden Globes.",
+  "He died of sepsis during the night of the 25<sup>th</sup> to 26<sup>th</sup> January 2019 in the American Hospital of Paris.",
+  "He was interred at the P&egrave;re Lachaise Cemetery in Paris, France.",
+];
 
-//   return number * pow(number, power - 1);
-// }
-
-// pow(2, 3);
-
-// 1) number = 2 power = 3 => 2 * (pow(2, 2) => 4 = 8) =>
-// number = 2 power = 2 => 2 * (pow(2, 1) => 2 = 4) =>
-// number = 2 power = 1 => 2 * (pow(2, 0) => 1 = 2) =>
-// number = 2 power = 0 => 1
-
-// pow(2, 0); // 1
-// pow(2, 1); // 2 * 1 => 2
-// pow(2, 2); // 2 * 2 => 4
-// pow(2, 3); 2 * 4 => 8
-
-// "use strict";
-
-// const user = {
-//   name: "John",
-//   age: 30,
-//   //   showUserThis: function () {
-//   //     console.log(this); // user
-//   //     const arrowThis = () => {
-//   //       console.log("arrow", this); // user
-//   //     };
-//   //     arrowThis();
-//   //   },
-//   arrowThis: () => {
-//     console.log("arrow", this); // window
-//   },
-// };
-
-// const arrowThis = () => {
-//   console.log("arrow", this); // window
-// };
-
-// function showThis() {
-//   console.log("function", this);
-// }
-
-// showThis.call(user);
-// showThis.apply(user);
-// const bindedFunction = showThis.bind(user);
-// bindedFunction();
-
-// user.showUserThis();
-// arrowThis();
-// user.arrowThis.call(user);
-// user.arrowThis.bind(user)();
-
-// call - coma
-// apply - array
-
-// const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-// const myMap = (arr, callback) => {
-//   const result = [];
-//   for (let element of arr) {
-//     result.push(callback(element));
-//   }
-//   return result;
-// };
-
-// const variant1 = numbers.map((number) => number * 2);
-// const variant2 = numbers.map((number) => number - 2);
-// const variant3 = numbers.map((number) => number + 100);
-// const variant4 = numbers.filter((number) => number > 5);
-
-// "use strict";
-
-// function createTransaction(amount, onError, onSuccess) {
-//   if (amount < 0) {
-//     onError();
-//   } else {
-//     onSuccess(amount);
-//   }
-// }
-
-// function error() {
-//   console.log("Transaction failed");
-// }
-
-// function success(amount) {
-//   console.log(`Transaction successful. Amount: ${this}`);
-// }
-
-// function USDsuccess(amount) {
-//   console.log(`Transaction successful. Amount: ${amount} USD`);
-// }
-
-// createTransaction("100 UAH", error, success.bind(user));
-// createTransaction("100 USD", error, USDsuccess.bind(hotel));
+// const createLiFromArray = (array) =>
+//   array.map((el) => `<li>${el}</li>`).join("");
+const createLiFromArray = (array) =>
+  array.reduce((acc, el) => acc + `<li>${el}</li>`, "");
+// `<li>He was born in Paris, France on February 24<sup>th</sup>, 1932.</li>`
+// `<li>He was born in Paris, France on February 24<sup>th</sup>, 1932.</li><li>His father was himself a conductor and composer, and his mother, who was Armenian, was the sister of a conductor.</li>`
+const list = createLiFromArray(facts);
+ul.insertAdjacentHTML("beforeend", list);
+console.log(createLiFromArray(facts));
